@@ -215,6 +215,8 @@ p {
 }
 
 
+
+
 /* ==============================
    HERO
 ============================== */
@@ -228,6 +230,9 @@ p {
     background-repeat: no-repeat;
     overflow: hidden;
 }
+
+
+/* HERO CONTENT */
 
 .hero-content {
     animation: slide-left .9s ease-out both;
@@ -245,6 +250,7 @@ p {
 
 
 /* HERO LIST */
+
 .hero-content ul {
     list-style: none;
     padding: 0;
@@ -269,19 +275,76 @@ p {
     flex-shrink: 0;
 }
 
+
+/* HERO IMAGE */
+
 .hero-image {
-    animation: slide-right .9s ease-out both;
-    animation-delay: .2s;
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
+    animation: slide-right .9s ease-out .2s both;
 }
 
-.hero-image img {
+.hero-main-image {
+    display: block;
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: auto;
+}
+
+
+/* FLOATING ICON */
+
+.hero-floating {
+    position: absolute;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    isolation: isolate;
+}
+
+.hero-floating::before {
+    content: "";
+    position: absolute;
+    width: 145%;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle,
+        rgba(255, 255, 255, .65) 0%,
+        rgba(255, 255, 255, .4) 25%,
+        rgba(255, 255, 255, .18) 50%,
+        rgba(255, 255, 255, .06) 70%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    filter: blur(5px);
+    z-index: -1;
+}
+
+.hero-floating img {
     display: block;
     width: 100%;
     height: auto;
 }
+
+.hero-trophy {
+    width: 80px;
+    top: 5%;
+    right: -15px;
+    animation: floating-trophy 3.2s ease-in-out infinite;
+}
+
+.hero-megaphone {
+    width: 90px;
+    bottom: -5%;
+    left: -20px;
+    animation: floating-megaphone 3.8s ease-in-out .5s infinite;
+}
+
 
 /* HERO BUTTON */
 
@@ -303,7 +366,9 @@ p {
 }
 
 
-/* ANIMATION */
+/* ==============================
+   ANIMATION
+============================== */
 
 @keyframes slide-left {
     from {
@@ -329,24 +394,30 @@ p {
     }
 }
 
-/* MOBILE HERO */
-
-@media (max-width: 767px) {
-
-    .hero-content h1 {
-        font-size: 32px;
-        text-align: left;
+@keyframes floating-trophy {
+    0%, 100% {
+        transform: translateY(0);
     }
 
-    .hero-content p, li {
-        font-size: 14px;
-        text-align: left;
+    50% {
+        transform: translateY(-14px);
+    }
+}
+
+@keyframes floating-megaphone {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-12px);
     }
 }
 
 
-
-/* MOBILE HERO */
+/* ==============================
+   MOBILE HERO
+============================== */
 
 @media (max-width: 767px) {
 
@@ -359,21 +430,8 @@ p {
         text-align: center;
     }
 
-    .hero-image {
-        margin-top: 5px;
-    }
-
-    .hero-image img {
-        width: 80%;
-        margin: 0 auto;
-    }
-
-    .hero-content li {
-        font-size: 12px;
-        text-align: left;
-    }
     .hero-content h1 {
-        font-size: 18px;
+        font-size: 28px;
         text-align: left;
     }
 
@@ -381,16 +439,204 @@ p {
         font-size: 12px;
         text-align: left;
     }
+
+    .hero-content ul {
+        margin: 20px 0;
+    }
+
+    .hero-content li {
+        font-size: 12px;
+        text-align: left;
+    }
+
+    .hero-image {
+        margin-top: 5px;
+    }
+
+    .hero-main-image {
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    .hero-trophy {
+        width: 55px;
+        top: 3%;
+        right: 5px;
+    }
+
+    .hero-megaphone {
+        width: 60px;
+        bottom: 5%;
+        left: 5px;
+    }
+
+    .hero-floating::before {
+        width: 130%;
+    }
+
+    .btn-hero {
+        font-size: 14px;
+        padding: 11px 25px;
+    }
 }
 
 
-/* REDUCED MOTION */
+/* ==============================
+   REDUCED MOTION
+============================== */
 
 @media (prefers-reduced-motion: reduce) {
 
     .hero-content,
+    .hero-image,
+    .hero-floating {
+        animation: none !important;
+    }
+
+}
+
+
+/* HERO BUTTON */
+
+.btn-hero {
+    display: inline-block;
+    padding: 12px 30px;
+    background: var(--secondary-dark);
+    color: #fff;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: .3s ease;
+}
+
+.btn-hero:hover {
+    background: var(--secondary);
+    color: #fff;
+}
+
+
+/* ==============================
+   ANIMATION
+============================== */
+
+@keyframes slide-left {
+    from {
+        opacity: 0;
+        transform: translateX(-70px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slide-right {
+    from {
+        opacity: 0;
+        transform: translateX(70px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes floating-trophy {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-18px);
+    }
+}
+
+@keyframes floating-megaphone {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+
+/* ==============================
+   MOBILE HERO
+============================== */
+
+@media (max-width: 767px) {
+
+    .hero {
+        padding: 60px 0;
+        background-position: center;
+    }
+
+    .hero-content {
+        text-align: center;
+    }
+
+    .hero-content h1 {
+        font-size: 28px;
+        text-align: left;
+    }
+
+    .hero-content p {
+        font-size: 12px;
+        text-align: left;
+    }
+
+    .hero-content ul {
+        margin: 20px 0;
+    }
+
+    .hero-content li {
+        font-size: 12px;
+        text-align: left;
+    }
+
     .hero-image {
-        animation: none;
+        margin-top: 5px;
+    }
+
+    .hero-main-image {
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    .hero-trophy {
+        width: 65px;
+        top: 3%;
+        right: 5px;
+    }
+
+    .hero-megaphone {
+        width: 75px;
+        bottom: 5%;
+        left: 5px;
+    }
+
+    .btn-hero {
+        font-size: 14px;
+        padding: 11px 25px;
+    }
+}
+
+
+/* ==============================
+   REDUCED MOTION
+============================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .hero-content,
+    .hero-image,
+    .hero-floating {
+        animation: none !important;
     }
 
 }
@@ -1535,14 +1781,23 @@ p {
     }
 }
 
-/* FAQ */
+
+/* ==============================
+   FAQ
+============================== */
+
 .faq-section {
+    position: relative;
     padding: 80px 0;
     background-image: url('../images/background-faq.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    overflow: hidden;
 }
+
+
+/* FAQ INTRO */
 
 .faq-intro {
     position: sticky;
@@ -1570,7 +1825,14 @@ p {
     margin-bottom: 28px;
 }
 
-/* IMAGE */
+
+/* FAQ IMAGE */
+
+.faq-image-wrap {
+    position: relative;
+    margin-top: 10px;
+}
+
 .faq-image {
     width: 100%;
     overflow: hidden;
@@ -1585,7 +1847,59 @@ p {
     border-radius: 16px;
 }
 
-/* ACCORDION */
+
+/* FAQ FLOATING ICON */
+
+.faq-floating {
+    position: absolute;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    isolation: isolate;
+}
+
+.faq-floating::before {
+    content: "";
+    position: absolute;
+    width: 135%;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle,
+        rgba(255, 255, 255, .65) 0%,
+        rgba(255, 255, 255, .4) 25%,
+        rgba(255, 255, 255, .18) 50%,
+        rgba(255, 255, 255, .06) 70%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    filter: blur(5px);
+    z-index: -1;
+}
+
+.faq-floating img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.faq-diskon {
+    width: 110px;
+    top: 20px;
+    left: -30px;
+    animation: faq-floating-diskon 3.2s ease-in-out infinite;
+}
+
+.faq-buku {
+    width: 120px;
+    top: 65px;
+    right: 10px;
+    animation: faq-floating-buku 3.8s ease-in-out .5s infinite;
+}
+
+/* FAQ ACCORDION */
+
 .faq-list {
     display: flex;
     flex-direction: column;
@@ -1634,7 +1948,36 @@ p {
     font-weight: 600;
 }
 
-/* MOBILE */
+
+/* ==============================
+   ANIMATION
+============================== */
+
+@keyframes faq-floating-diskon {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-14px);
+    }
+}
+
+@keyframes faq-floating-buku {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
+}
+
+
+/* ==============================
+   MOBILE FAQ
+============================== */
+
 @media (max-width: 767px) {
 
     .faq-section {
@@ -1661,9 +2004,30 @@ p {
         margin-bottom: 22px;
     }
 
+    .faq-image-wrap {
+        margin-top: 25px;
+    }
+
     .faq-image {
         max-width: 100%;
         margin-bottom: 5px;
+    }
+
+    .faq-diskon {
+        width: 75px;
+        top: 15px;
+        left: 5px;
+    }
+
+    .faq-buku {
+        width: 120px;
+        top: 65px;
+        right: 10px;
+        animation: faq-floating-buku 3.8s ease-in-out .5s infinite;
+    }
+
+    .faq-floating::before {
+        width: 130%;
     }
 
     .faq-list {
@@ -1682,10 +2046,35 @@ p {
     }
 }
 
-/* FINAL SECTION */
+
+/* ==============================
+   REDUCED MOTION
+============================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .faq-floating {
+        animation: none !important;
+    }
+
+}
+
+
+/* ==============================
+   FINAL SECTION
+============================== */
+
 .final-section {
     padding: 80px 0;
     background: var(--white);
+}
+
+/* FINAL IMAGE */
+
+.final-image-wrap {
+    position: relative;
+    width: 100%;
+    margin-top: 10px;
 }
 
 .final-image {
@@ -1701,6 +2090,78 @@ p {
     object-fit: cover;
     border-radius: 18px;
 }
+
+/* FLOATING ICON */
+
+.final-floating {
+    position: absolute;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    isolation: isolate;
+}
+
+.final-floating img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* BUKU */
+
+.final-buku {
+    width: 135px;
+    top: 25px;
+    left: -30px;
+    animation: final-floating-buku 3.2s ease-in-out infinite;
+}
+
+.final-buku::before {
+    content: "";
+    position: absolute;
+    width: 145%;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle,
+        rgba(255, 174, 91, .32) 0%,
+        rgba(255, 174, 91, .18) 35%,
+        rgba(255, 174, 91, .07) 65%,
+        rgba(255, 174, 91, 0) 100%
+    );
+    filter: blur(8px);
+    z-index: -1;
+}
+
+/* PIALA */
+
+.final-piala {
+    width: 125px;
+    top: 70px;
+    right: -25px;
+    animation: final-floating-piala 3.8s ease-in-out .5s infinite;
+}
+
+.final-piala::before {
+    content: "";
+    position: absolute;
+    width: 145%;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle,
+        rgba(117, 190, 255, .38) 0%,
+        rgba(117, 190, 255, .2) 35%,
+        rgba(117, 190, 255, .08) 65%,
+        rgba(117, 190, 255, 0) 100%
+    );
+    filter: blur(8px);
+    z-index: -1;
+}
+
+/* FINAL CONTENT */
 
 .final-content {
     padding: 10px 0;
@@ -1740,19 +2201,18 @@ p {
 }
 
 /* BUTTON */
+
 .btn-final {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 12px;
     padding: 14px 26px;
-
     background: linear-gradient(
         135deg,
         var(--secondary),
         var(--secondary-dark)
     );
-
     color: var(--white);
     font-size: 15px;
     font-weight: 600;
@@ -1775,17 +2235,71 @@ p {
     transform: translateX(5px);
 }
 
+/* ANIMATION */
+
+@keyframes final-floating-buku {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-14px);
+    }
+}
+
+@keyframes final-floating-piala {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
+}
+
 /* MOBILE */
+
 @media (max-width: 767px) {
 
     .final-section {
         padding: 55px 0;
     }
 
-    .final-image img {
-        height: auto;
-        aspect-ratio: 4 / 3;
+    .final-image-wrap {
+        margin-top: 25px;
     }
+
+    .final-image {
+        border-radius: 14px;
+    }
+
+    .final-image img {
+        width: 100%;
+        height: 430px;
+        aspect-ratio: 3 / 4;
+        object-fit: cover;
+    }
+
+    /* FLOATING ICON MOBILE */
+
+    .final-buku {
+        width: 95px;
+        top: 15px;
+        left: 0;
+    }
+
+    .final-piala {
+        width: 90px;
+        top: 55px;
+        right: 5px;
+    }
+
+    .final-buku::before,
+    .final-piala::before {
+        width: 135%;
+    }
+
+    /* CONTENT MOBILE */
 
     .final-content {
         padding: 0;
@@ -1815,6 +2329,18 @@ p {
         width: 100%;
         padding: 13px 20px;
         font-size: 14px;
+    }
+}
+
+/* REDUCED MOTION */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .final-floating,
+    .btn-final,
+    .btn-final i {
+        animation: none !important;
+        transition: none !important;
     }
 }
 

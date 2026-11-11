@@ -2074,7 +2074,7 @@ p {
     gap: 10px;
     width: 100%;
     padding: 12px 20px;
-    background: var(--secondary-dark);
+    background: var(--primary);
     color: var(--white);
     font-size: 14px;
     font-weight: 600;

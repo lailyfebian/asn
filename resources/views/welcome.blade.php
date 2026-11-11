@@ -268,7 +268,7 @@
                     <div class="reason-card">
                         <span class="reason-number">01</span>
                         <div class="reason-icon">
-                            <img src="wp-content/uploads/public/keunggulan/keunggulan-1.svg" alt="">
+                            <img src="{{ asset('images/keunggulan/keunggulan-1.svg') }}" alt="">
                         </div>
                         <h3>Pendampingan Belajar Sesuai Target Seleksi</h3>
                         <span class="reason-line"></span>
@@ -328,7 +328,7 @@
                     <div class="reason-card">
                         <span class="reason-number">06</span>
                         <div class="reason-icon">
-                            <img src="public/images/keunggulan/keunggulan-6.svg" alt="">
+                            <img src="{{ asset('images/keunggulan/keunggulan-6.svg') }}" alt="">
                         </div>
                         <h3>Program Belajar dengan Sistem yang Praktis</h3>
                         <span class="reason-line"></span>
@@ -427,7 +427,7 @@
 
                 <div class="col-md-4">
                     <div class="product-card">
-                        <img src="public/images/produk/20.webp" alt="Program Les Privat 2">
+                        <img src="{{ asset('/images/produk/20.webp') }}" alt="Program Les Privat 2">
                         <div class="product-overlay">
                             <a href="https://wa.privatnusantara.com/" class="btn-product" target="_blank">
                                 Konsultasi PPPK
@@ -960,14 +960,14 @@
 
         </div>
     </footer>
-<a href="https://wa.privatnusantara.com/"
-   class="wa-floating"
-   target="_blank"
-   rel="noopener"
-   aria-label="Hubungi kami melalui WhatsApp">
-    <i class="bi bi-whatsapp"></i>
-    <span>Hubungi Kami</span>
-</a>
+    <a href="https://wa.privatnusantara.com/"
+       class="wa-floating"
+       target="_blank"
+       rel="noopener"
+       aria-label="Hubungi kami melalui WhatsApp">
+        <i class="bi bi-whatsapp"></i>
+        <span>Hubungi Kami</span>
+    </a>
 
 
 
